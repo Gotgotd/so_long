@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/08 11:59:01 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/08 15:20:48 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,11 @@ void	put_sheets_to_map(t_data *data);
 void	set_sheets(t_data *data);
 
 /* HANDLE EVENTS */
-int	close_window(t_data *data);
-int	handle_events(int keycode, t_data *data);
+int		close_window(t_data *data);
+int		handle_events(int keycode, t_data *data);
+
+/* INIT STRUCTURE */
+void	init_map_data(t_data *data);
 
 /* FT_FREE */
 void	free_tab(char **tab);

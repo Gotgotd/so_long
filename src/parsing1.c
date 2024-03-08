@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:22:15 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/07 13:24:50 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/08 16:03:52 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,14 @@ char	**read_map(char **av)
 void	map_parsing(char **av, t_data *data)
 {
 	//unsigned int x = 0;
+	init_map_data(data);
 	data->map_data.map = read_map(av);
-	is_map_rectangle(data);
-	check_walls_and_char(data);
-	is_path_valid(av, data);
 	/* while (data->map_data.map[x])
 	{
 		printf("%s\n", data->map_data.map[x]);
 		x++;
-	} */
+	}  */
+	is_map_rectangle(data);
+	check_walls_and_char(data);
+	is_path_valid(av, data);
 }

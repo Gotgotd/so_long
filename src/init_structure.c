@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_structure.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 15:31:09 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/08 16:04:27 by gautier          ###   ########.fr       */
+/*   Created: 2024/03/08 15:15:44 by gautier           #+#    #+#             */
+/*   Updated: 2024/03/08 15:20:09 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
-
-int	main(int ac, char **av)
+void	init_map_data(t_data *data)
 {
-	t_data	data;
-
-	if (ac != 2)
-		ft_error(1);
-	map_parsing(av, &data);
-	display_map(&data);
-	mlx_key_hook(data.mlx_win, handle_events, &data);
-	mlx_hook(data.mlx_win, 17, 1L<<0, close_window, &data);
-	mlx_loop(data.mlx);
+	data->map_data.C_collected = 0;
+	data->map_data.C_count = 0;
+	data->map_data.E_count = 0;
+	data->map_data.heigth = 0;
+	data->map_data.nb_column = 0;
+	data->map_data.nb_row = 0;
+	data->map_data.P_count = 0;
+	data->map_data.width = 0;
 }
