@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/08 15:20:48 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/13 14:31:34 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,15 @@ typedef struct s_sheets
 	void	*knight_up;
 	void	*knight_right;
 	void	*knight_left;
+	void	*knight_up_portal;
+	void	*knight_down_portal;
+	void	*knight_left_portal;
+	void	*knight_right_portal;
 	void	*portal_closed;
 	void	*portal_opened;
 	void	*demon_eye;
+	void	*win_sheet;
+	void	*knight_win;
 }	t_sheets;
 
 
@@ -80,8 +86,8 @@ int		check_path(char **map);
 void	is_path_valid(char **av, t_data *data);
 
 /* ERROR */
-void	ft_error(int flag);
-void	ft_error_count(int flag);
+void	ft_error(t_data *data, int flag);
+void	ft_error_count(t_data *data, int flag);
 
 /* GNL */
 char	*get_next_line(int fd);
@@ -92,14 +98,18 @@ void	display_map(t_data *data);
 void	put_sheets_to_map(t_data *data);
 void	set_sheets(t_data *data);
 
-/* HANDLE EVENTS */
+/* HANDLE EVENTS 1 */
 int		close_window(t_data *data);
 int		handle_events(int keycode, t_data *data);
+
+/* HANDLE EVENTS 2 */
+void	game_success(t_data *data);
 
 /* INIT STRUCTURE */
 void	init_map_data(t_data *data);
 
 /* FT_FREE */
+int		close_window(t_data *data);
 void	free_tab(char **tab);
 
 #endif

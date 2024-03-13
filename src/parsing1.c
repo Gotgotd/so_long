@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:22:15 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/08 16:03:52 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/13 14:31:34 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ void	is_map_rectangle(t_data *data)
 	}
 }
 
+//check if the character in the map is among the one needed by the program
+//then increase the count of Collectibles, Exit and Player start position
 void	check_char(char c, t_data *data)
 {
 	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P' )
-		ft_error(3);
+		ft_error(data, 3);
 	else if (c == 'C')
 		data->map_data.C_count += 1;
 	else if (c == 'E')
@@ -63,12 +65,12 @@ void	check_walls_and_char(t_data *data)
 		{
 			check_char(data->map_data.map[x][y], data);
 			if (data->map_data.map[0][y] != '1')
-				ft_error(2);
+				ft_error(data, 2);
 			if (data->map_data.map[x][0] != '1' 
 				|| data->map_data.map[x][data->map_data.nb_column - 1] != '1')
-				ft_error(2);
+				ft_error(data, 2);
 			if (data->map_data.map[data->map_data.nb_row - 1][y] != '1')
-				ft_error(2);
+				ft_error(data, 2);
 			y++;
 		}
 		x++;
@@ -109,14 +111,8 @@ char	**read_map(char **av)
 //then, check if it is valid to be used by the program.
 void	map_parsing(char **av, t_data *data)
 {
-	//unsigned int x = 0;
 	init_map_data(data);
 	data->map_data.map = read_map(av);
-	/* while (data->map_data.map[x])
-	{
-		printf("%s\n", data->map_data.map[x]);
-		x++;
-	}  */
 	is_map_rectangle(data);
 	check_walls_and_char(data);
 	is_path_valid(av, data);

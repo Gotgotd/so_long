@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:02:44 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/08 11:59:01 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/12 14:55:33 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	set_sheets(t_data *data)
 	data->sheets.knight_right = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_right.xpm", &(data->sheets.width), &(data->sheets.heigth));
 	data->sheets.portal_closed = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/portal_closed.xpm", &(data->sheets.width), &(data->sheets.heigth));
 	data->sheets.portal_opened = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/portal_opened.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.knight_up_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_up_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.knight_down_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_down_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.knight_left_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_left_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.knight_right_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_right_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.knight_win = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_win.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	data->sheets.win_sheet = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/win_sheet.xpm", &(data->sheets.width), &(data->sheets.heigth));
 }
 
 void	put_sheets_to_map(t_data *data)
