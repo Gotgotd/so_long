@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:22:15 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/13 14:31:34 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/14 14:28:36 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	is_map_rectangle(t_data *data)
 void	check_char(char c, t_data *data)
 {
 	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P' )
-		ft_error(data, 3);
+		ft_error_1(data, 3);
 	else if (c == 'C')
 		data->map_data.C_count += 1;
 	else if (c == 'E')
@@ -65,12 +65,12 @@ void	check_walls_and_char(t_data *data)
 		{
 			check_char(data->map_data.map[x][y], data);
 			if (data->map_data.map[0][y] != '1')
-				ft_error(data, 2);
+				ft_error_1(data, 2);
 			if (data->map_data.map[x][0] != '1' 
 				|| data->map_data.map[x][data->map_data.nb_column - 1] != '1')
-				ft_error(data, 2);
+				ft_error_1(data, 2);
 			if (data->map_data.map[data->map_data.nb_row - 1][y] != '1')
-				ft_error(data, 2);
+				ft_error_1(data, 2);
 			y++;
 		}
 		x++;

@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:53:48 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/13 14:31:34 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/14 14:28:36 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 void	check_counts(t_data *data)
 {
 	if (data->map_data.C_count < 1)
-		ft_error_count(data, 0);
+		ft_error_2(data, 0);
 	if (data->map_data.E_count != 1)
-		ft_error_count(data, 1);
+		ft_error_2(data, 1);
 	if (data->map_data.P_count != 1)
-		ft_error_count(data, 2);
+		ft_error_2(data, 2);
 }
 
 //initiliaze x and y indexes in the t_map_data structure for P and E,
@@ -103,7 +103,7 @@ void	is_path_valid(char **av, t_data *data)
 	if (!check_path(new_map))
 	{
 		free_tab(new_map);
-		ft_error(data, 4);
+		ft_error_1(data, 4);
 	}
 	free_tab(new_map);
 }

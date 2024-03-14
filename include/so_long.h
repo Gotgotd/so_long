@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/13 14:31:34 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/14 14:29:15 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int		check_path(char **map);
 void	is_path_valid(char **av, t_data *data);
 
 /* ERROR */
-void	ft_error(t_data *data, int flag);
-void	ft_error_count(t_data *data, int flag);
+void	ft_error_1(t_data *data, int flag);
+void	ft_error_2(t_data *data, int flag);
 
 /* GNL */
 char	*get_next_line(int fd);
