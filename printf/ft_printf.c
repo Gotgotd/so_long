@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:28:01 by gdaignea          #+#    #+#             */
-/*   Updated: 2023/11/22 15:50:56 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:41:02 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_printf(const char *s, ...)
 	return (count);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
@@ -90,4 +90,4 @@ int	main(void)
 	ft_printf("ma fonction : %p\n", "bonjour");
 	printf("la vraie fonction : %p\n", "bonjour");
 	return (0);
-}
+} */

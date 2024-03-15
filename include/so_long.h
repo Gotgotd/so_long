@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 14:29:15 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/14 16:59:50 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_data
 {
 	void	*mlx;
 	void	*mlx_win;
+	int		nb_moves;
 	t_map_data	map_data;
 	t_sheets	sheets;
 }	t_data; 
@@ -104,6 +105,8 @@ int		handle_events(int keycode, t_data *data);
 
 /* HANDLE EVENTS 2 */
 void	game_success(t_data *data);
+void	display_nb_moves(t_data *data);
+void	display_black_rectangle(t_data *data);
 
 /* INIT STRUCTURE */
 void	init_map_data(t_data *data);

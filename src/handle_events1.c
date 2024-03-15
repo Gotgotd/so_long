@@ -6,7 +6,7 @@
 /*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:16:24 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/12 14:28:18 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/14 17:00:02 by gautier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	move_right(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_right_portal, (y + 1) * SHEET_WIDTH, x * SHEET_HEIGTH);
 		else
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_right, (y + 1) * SHEET_WIDTH, x * SHEET_HEIGTH);
+		data->nb_moves++;
 	}
 }
 
@@ -72,6 +73,7 @@ void	move_left(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_left_portal, (y - 1) * SHEET_WIDTH, x * SHEET_HEIGTH);
 		else
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_left, (y - 1) * SHEET_WIDTH, x * SHEET_HEIGTH);
+		data->nb_moves++;
 	}
 }
 
@@ -101,6 +103,7 @@ void	move_up(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_up_portal, y * SHEET_WIDTH, (x - 1) * SHEET_HEIGTH);
 		else
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_up, y * SHEET_WIDTH, (x - 1) * SHEET_HEIGTH);
+		data->nb_moves++;
 	}
 }
 
@@ -130,6 +133,7 @@ void	move_down(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_down_portal, y * SHEET_WIDTH, (x + 1) * SHEET_HEIGTH);
 		else
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_down, y * SHEET_WIDTH, (x + 1) * SHEET_HEIGTH);
+		data->nb_moves++;
 	}
 }
 
@@ -143,7 +147,7 @@ int	handle_events(int keycode, t_data *data)
         mlx_destroy_window(data->mlx, data->mlx_win);
         exit(0);
     }
-	else if (keycode == 119 || keycode == 65362)
+	else if (keycode == 119 || keycode == 65362)	
 		move_up(data);
 	else if (keycode == 115 || keycode == 65364)
 		move_down(data);
@@ -156,5 +160,7 @@ int	handle_events(int keycode, t_data *data)
 		game_success(data);
 	else if (data->map_data.C_collected == data->map_data.C_count)
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.portal_opened, data->map_data.E_indexes.y * SHEET_WIDTH, data->map_data.E_indexes.x * SHEET_HEIGTH);
-    return (0);
+	display_black_rectangle(data);
+	display_nb_moves(data);
+	return (0);
 }
