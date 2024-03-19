@@ -3,57 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:02:44 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/12 14:55:33 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:29:43 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	set_sheets(t_data *data)
+void	*convert_img(t_data *data, char *path)
 {
-	data->sheets.width = SHEET_WIDTH;
-	data->sheets.heigth = SHEET_HEIGTH;
-	data->sheets.ground = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/ground.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.wall = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/wall.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.demon_eye = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/demon_eye.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_down = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_down.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_up = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_up.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_left = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_left.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_right = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_right.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.portal_closed = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/portal_closed.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.portal_opened = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/portal_opened.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_up_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_up_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_down_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_down_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_left_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_left_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_right_portal = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_right_portal.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.knight_win = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/knight_win.xpm", &(data->sheets.width), &(data->sheets.heigth));
-	data->sheets.win_sheet = mlx_xpm_file_to_image(data->mlx, "./assets/sheets/win_sheet.xpm", &(data->sheets.width), &(data->sheets.heigth));
+	void	*img;
+
+	img = mlx_xpm_file_to_image(data->mlx, path, &(data->img.size),
+			&(data->img.size));
+	return (img);
 }
 
-void	put_sheets_to_map(t_data *data)
+void	set_img(t_data *data)
+{
+	data->img.size = SIZE;
+	data->img.ground = convert_img(data, "./assets/img/ground.xpm");
+	data->img.wall = convert_img(data, "./assets/img/wall.xpm");
+	data->img.demon_eye = convert_img(data, "./assets/img/demon_eye.xpm");
+	data->img.pl_down = convert_img(data, "./assets/img/pl_down.xpm");
+	data->img.pl_up = convert_img(data, "./assets/img/pl_up.xpm");
+	data->img.pl_left = convert_img(data, "./assets/img/pl_left.xpm");
+	data->img.pl_right = convert_img(data, "./assets/img/pl_right.xpm");
+	data->img.portal_clsd = convert_img(data, "./assets/img/portal_clsd.xpm");
+	data->img.portal_opnd = convert_img(data, "./assets/img/portal_opnd.xpm");
+	data->img.pl_up_p = convert_img(data, "./assets/img/pl_up_p.xpm");
+	data->img.pl_down_p = convert_img(data, "./assets/img/pl_down_p.xpm");
+	data->img.pl_left_p = convert_img(data, "./assets/img/pl_left_p.xpm");
+	data->img.pl_right_p = convert_img(data, "./assets/img/pl_right_p.xpm");
+	data->img.pl_win = convert_img(data, "./assets/img/pl_win.xpm");
+	data->img.win_img = convert_img(data, "./assets/img/win_img.xpm");
+}
+
+void	display_img(t_data *data, void *img, int y, int x)
+{
+	mlx_put_image_to_window(data->mlx, data->mlx_win, img,
+		y * SIZE, x * SIZE);
+}
+
+void	put_img_to_map(t_data *data)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while(data->map_data.map[x])
+	while (data->map_data.map[x])
 	{
 		y = 0;
-		while(data->map_data.map[x][y])
+		while (data->map_data.map[x][y])
 		{
 			if (data->map_data.map[x][y] == '1')
-				mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.wall, y * SHEET_WIDTH, x * SHEET_HEIGTH);
+				display_img(data, data->img.wall, y, x);
 			if (data->map_data.map[x][y] == '0')
-				mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.ground, y * SHEET_WIDTH, x * SHEET_HEIGTH);
+				display_img(data, data->img.ground, y, x);
 			if (data->map_data.map[x][y] == 'C')
-				mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.demon_eye, y * SHEET_WIDTH, x * SHEET_HEIGTH);
+				display_img(data, data->img.demon_eye, y, x);
 			if (data->map_data.map[x][y] == 'P')
-				mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_down, y * SHEET_WIDTH, x * SHEET_HEIGTH);
+				display_img(data, data->img.pl_down, y, x);
 			if (data->map_data.map[x][y] == 'E')
-				mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.portal_closed, y * SHEET_WIDTH, x * SHEET_HEIGTH);
+				display_img(data, data->img.portal_clsd, y, x);
 			y++;
 		}
 		x++;
@@ -62,17 +76,18 @@ void	put_sheets_to_map(t_data *data)
 
 void	display_map(t_data *data)
 {
-	data->map_data.heigth = data->map_data.nb_row * SHEET_HEIGTH;
-	data->map_data.width = data->map_data.nb_column * SHEET_WIDTH;
+	data->map_data.heigth = data->map_data.nb_row * SIZE;
+	data->map_data.width = data->map_data.nb_column * SIZE;
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return ;
-	set_sheets(data);
-	data->mlx_win = mlx_new_window(data->mlx, data->map_data.width, data->map_data.heigth, "so_long");
+	set_img(data);
+	data->mlx_win = mlx_new_window(data->mlx, data->map_data.width,
+			data->map_data.heigth, "so_long");
 	if (!data->mlx_win)
 	{
 		free(data->mlx);
 		return ;
 	}
-	put_sheets_to_map(data);
-} 
+	put_img_to_map(data);
+}

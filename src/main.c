@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:09 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 14:30:15 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 15:02:02 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_file_extension(char *av, t_data *data)
 		j--;
 	}
 	return (0);
-} 
+}
 
 int	main(int ac, char **av)
 {
@@ -42,6 +42,6 @@ int	main(int ac, char **av)
 	map_parsing(av, &data);
 	display_map(&data);
 	mlx_key_hook(data.mlx_win, handle_events, &data);
-	mlx_hook(data.mlx_win, 17, 1L<<0, close_window, &data);
+	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
 	mlx_loop(data.mlx);
 }

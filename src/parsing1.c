@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:22:15 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 14:28:36 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:27:50 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	check_char(char c, t_data *data)
 	if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P' )
 		ft_error_1(data, 3);
 	else if (c == 'C')
-		data->map_data.C_count += 1;
+		data->map_data.c_count += 1;
 	else if (c == 'E')
-		data->map_data.E_count += 1;
+		data->map_data.e_count += 1;
 	else if (c == 'P')
-		data->map_data.P_count += 1;
+		data->map_data.p_count += 1;
 }
 
 //check if the map is surrounded by walls and made of
@@ -66,7 +66,7 @@ void	check_walls_and_char(t_data *data)
 			check_char(data->map_data.map[x][y], data);
 			if (data->map_data.map[0][y] != '1')
 				ft_error_1(data, 2);
-			if (data->map_data.map[x][0] != '1' 
+			if (data->map_data.map[x][0] != '1'
 				|| data->map_data.map[x][data->map_data.nb_column - 1] != '1')
 				ft_error_1(data, 2);
 			if (data->map_data.map[data->map_data.nb_row - 1][y] != '1')
@@ -81,7 +81,7 @@ void	check_walls_and_char(t_data *data)
 //extract map from file and store it into a double tab
 char	**read_map(char **av)
 {
-	char 	*line;
+	char	*line;
 	char	**map;
 	char	*map_line;
 	int		map_file;
@@ -93,7 +93,7 @@ char	**read_map(char **av)
 		exit(1);
 	}
 	map_line = ft_strdup("");
-	while(1)
+	while (1)
 	{
 		line = get_next_line(map_file);
 		if (!line)

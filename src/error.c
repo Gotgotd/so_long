@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:09:25 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 14:28:36 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/15 11:09:38 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_error_1(t_data *data, int flag)
 	if (flag == 3)
 	{
 		free_tab(data->map_data.map);
-		perror("error\nMap must contain only '1', '0', 'C', 'E' or 'P' characters");
+		perror("error\nMap must contain only '1', '0', 'C','E' or 'P' char");
 		exit (1);
 	}
 	if (flag == 4)

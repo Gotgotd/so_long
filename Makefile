@@ -6,8 +6,8 @@ LIBFT = libft/libft.a
 PRINTF = printf/libftprintf.a
 LIBMLX = mlx/libmlx.a
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror -ggdb
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror -g -ggdb
+RM = rm -rf
 
 SRCS = $(wildcard $(DIR_SRC)*.c) $(wildcard $(DIR_GNL)*.c)
 OBJ = $(patsubst $(DIR_SRC)%.c,$(DIR_OBJ)%.o,$(SRCS))
@@ -16,7 +16,7 @@ $(NAME): $(OBJ)
 		make -C ./printf
 		make -C ./libft
 		make -C ./mlx
-		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(PRINTF) $(LIBMLX) -L/usr/X11R6/lib -lXext -lX11
+		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(PRINTF) $(LIBMLX) -lXext -lX11
 
 $(DIR_OBJ):
 	@mkdir -p $(DIR_OBJ)

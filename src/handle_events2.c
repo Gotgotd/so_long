@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   handle_events2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:33:40 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 23:26:07 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:28:06 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 //free the data and exit the program.
-void	quit_game (t_data *data)
+void	quit_game(t_data *data)
 {
 	free_tab(data->map_data.map);
 	exit (0);
 }
 
- void	display_black_rectangle(t_data *data)
+void	display_black_rectangle(t_data *data)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ void	quit_game (t_data *data)
 
 void	display_nb_moves(t_data *data)
 {
-	char *moves;
+	char	*moves;
 
 	moves = ft_itoa(data->nb_moves);
 	mlx_string_put(data->mlx, data->mlx_win, 20, 12, 0xFF0000, "MOVES :");
@@ -59,11 +59,13 @@ int	close_window(t_data *data)
 //the function display a win message, the knight_win sheet, wait 6sec
 //and exit the program
 void	game_success(t_data *data)
-{ 
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.win_sheet, (data->map_data.width / 8 ), (data->map_data.heigth / 8));
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->sheets.knight_win, data->map_data.P_indexes.y * SHEET_WIDTH, data->map_data.P_indexes.x * SHEET_HEIGTH);
+{
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.win_img,
+		(data->map_data.width / 8), (data->map_data.heigth / 8));
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.pl_win,
+		data->map_data.p_pos.y * SIZE,
+		data->map_data.p_pos.x * SIZE);
 	mlx_do_sync(data->mlx);
 	usleep(8000000);
 	quit_game(data);
 }
-

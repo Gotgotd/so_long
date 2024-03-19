@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 11:53:48 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 14:28:36 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:28:14 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 //start position and exit position
 void	check_counts(t_data *data)
 {
-	if (data->map_data.C_count < 1)
+	if (data->map_data.c_count < 1)
 		ft_error_2(data, 0);
-	if (data->map_data.E_count != 1)
+	if (data->map_data.e_count != 1)
 		ft_error_2(data, 1);
-	if (data->map_data.P_count != 1)
+	if (data->map_data.p_count != 1)
 		ft_error_2(data, 2);
 }
 
-//initiliaze x and y indexes in the t_map_data structure for P and E,
+//initiliaze x and y pos in the t_map_data structure for P and E,
 //needed to check if the path between them is valid
 void	init_player_and_exit(t_data *data)
 {
@@ -39,13 +39,13 @@ void	init_player_and_exit(t_data *data)
 		{
 			if (data->map_data.map[x][y] == 'P')
 			{
-				data->map_data.P_indexes.x = x;
-				data->map_data.P_indexes.y = y;
+				data->map_data.p_pos.x = x;
+				data->map_data.p_pos.y = y;
 			}
 			if (data->map_data.map[x][y] == 'E')
 			{
-				data->map_data.E_indexes.x = x;
-				data->map_data.E_indexes.y = y;
+				data->map_data.e_pos.x = x;
+				data->map_data.e_pos.y = y;
 			}
 			y++;
 		}
@@ -55,15 +55,15 @@ void	init_player_and_exit(t_data *data)
 
 //replace all characters but '1' with a 'F'
 //if the map is well written, there is only '1' and 'F' left
-void	flood_map(char **map, t_indexes indexes)
+void	flood_map(char **map, t_pos pos)
 {
-	if (map[indexes.x][indexes.y] == '1' || map[indexes.x][indexes.y] == 'F')
-			return ; 
-	map[indexes.x][indexes.y] = 'F';
-	flood_map(map, (t_indexes){indexes.x, indexes.y + 1});
-	flood_map(map, (t_indexes){indexes.x, indexes.y - 1});
-	flood_map(map, (t_indexes){indexes.x + 1, indexes.y});
-	flood_map(map, (t_indexes){indexes.x - 1, indexes.y});
+	if (map[pos.x][pos.y] == '1' || map[pos.x][pos.y] == 'F')
+		return ;
+	map[pos.x][pos.y] = 'F';
+	flood_map(map, (t_pos){pos.x, pos.y + 1});
+	flood_map(map, (t_pos){pos.x, pos.y - 1});
+	flood_map(map, (t_pos){pos.x + 1, pos.y});
+	flood_map(map, (t_pos){pos.x - 1, pos.y});
 }
 
 //check if there is any 'C', 'E' left in the map
@@ -93,13 +93,13 @@ int	check_path(char **map)
 //by using a recursive flooding function described above
 void	is_path_valid(char **av, t_data *data)
 {
-	char **new_map;
-	t_indexes indexes;
+	char	**new_map;
+	t_pos	pos;
 
 	init_player_and_exit(data);
 	new_map = read_map(av);
-	indexes = data->map_data.P_indexes;
-	flood_map(new_map, indexes);
+	pos = data->map_data.p_pos;
+	flood_map(new_map, pos);
 	if (!check_path(new_map))
 	{
 		free_tab(new_map);

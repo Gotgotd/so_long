@@ -3,75 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/14 16:59:50 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:29:43 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		SO_LONG_H
-# define	SO_LONG_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-# define SHEET_HEIGTH 64
-# define SHEET_WIDTH 64
+# define SIZE 64
 
-
-typedef struct s_sheets
+typedef struct s_img
 {
-	int		width;
-	int		heigth;
+	int		size;
 	void	*wall;
 	void	*ground;
-	void	*knight_down;
-	void	*knight_up;
-	void	*knight_right;
-	void	*knight_left;
-	void	*knight_up_portal;
-	void	*knight_down_portal;
-	void	*knight_left_portal;
-	void	*knight_right_portal;
-	void	*portal_closed;
-	void	*portal_opened;
+	void	*pl_down;
+	void	*pl_up;
+	void	*pl_right;
+	void	*pl_left;
+	void	*pl_up_p;
+	void	*pl_down_p;
+	void	*pl_left_p;
+	void	*pl_right_p;
+	void	*portal_clsd;
+	void	*portal_opnd;
 	void	*demon_eye;
-	void	*win_sheet;
-	void	*knight_win;
-}	t_sheets;
+	void	*win_img;
+	void	*pl_win;
+}	t_img;
 
-
-typedef struct	s_indexes
+typedef struct s_pos
 {
 	int	x;
 	int	y;
-}	t_indexes;
+}	t_pos;
 
-typedef struct	s_map_data
+typedef struct s_map_data
 {
 	char			**map;
 	unsigned int	nb_column;
 	unsigned int	nb_row;
-	int				C_count;
-	int				E_count;
-	int				P_count;
-	int				C_collected;
+	int				c_count;
+	int				e_count;
+	int				p_count;
+	int				c_collected;
 	int				width;
 	int				heigth;
-	t_indexes		P_indexes;
-	t_indexes		E_indexes;
+	t_pos			p_pos;
+	t_pos			e_pos;
 }	t_map_data;
 
-typedef struct	s_data 
+typedef struct s_data
 {
-	void	*mlx;
-	void	*mlx_win;
-	int		nb_moves;
+	void		*mlx;
+	void		*mlx_win;
+	int			nb_moves;
 	t_map_data	map_data;
-	t_sheets	sheets;
-}	t_data; 
+	t_img		img;
+}	t_data;
 
 /* PARSING 1 */
 void	map_parsing(char **av, t_data *data);
@@ -82,7 +78,7 @@ void	check_walls_and_char(t_data *data);
 /* PARSING 2 */
 void	check_counts(t_data *data);
 void	init_player_and_exit_pos(t_data data);
-void	flood_map(char **map, t_indexes indexes);
+void	flood_map(char **map, t_pos pos);
 int		check_path(char **map);
 void	is_path_valid(char **av, t_data *data);
 
@@ -95,9 +91,11 @@ char	*get_next_line(int fd);
 char	*ft_strjoin_and_free(char *s1, char *s2);
 
 /* DISPLAY MAP */
+void	*convert_img(t_data *data, char *path);
+void	display_img(t_data *data, void *img, int y, int x);
+void	put_img_to_map(t_data *data);
 void	display_map(t_data *data);
-void	put_sheets_to_map(t_data *data);
-void	set_sheets(t_data *data);
+void	set_img(t_data *data);
 
 /* HANDLE EVENTS 1 */
 int		close_window(t_data *data);
