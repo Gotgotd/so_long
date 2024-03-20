@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:20 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 16:29:43 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:49:39 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define SO_LONG_H
 
 # include "../mlx/mlx.h"
-# include <fcntl.h>
 # include "../libft/libft.h"
+# include <fcntl.h>
+# include <errno.h>
 
 # define SIZE 64
 
@@ -85,6 +86,7 @@ void	is_path_valid(char **av, t_data *data);
 /* ERROR */
 void	ft_error_1(t_data *data, int flag);
 void	ft_error_2(t_data *data, int flag);
+void	ft_error_3(int flag);
 
 /* GNL */
 char	*get_next_line(int fd);
@@ -110,7 +112,8 @@ void	display_black_rectangle(t_data *data);
 void	init_map_data(t_data *data);
 
 /* FT_FREE */
-int		close_window(t_data *data);
 void	free_tab(char **tab);
+void	destroy_img(t_data *data);
+void	quit_game(t_data *data);
 
 #endif

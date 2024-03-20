@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:22:15 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 16:27:50 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:49:26 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	is_map_rectangle(t_data *data)
 {
 	unsigned int	x;
 
+	errno = 1;
 	x = 0;
 	data->map_data.nb_column = ft_strlen(data->map_data.map[x]);
 	while (data->map_data.map[x])
@@ -24,6 +25,7 @@ void	is_map_rectangle(t_data *data)
 		if (ft_strlen(data->map_data.map[x]) != data->map_data.nb_column)
 		{
 			perror("Error\nMap must be a rectangle.");
+			free_tab(data->map_data.map);
 			exit(1);
 		}
 		x++;
@@ -32,6 +34,7 @@ void	is_map_rectangle(t_data *data)
 	if (x == data->map_data.nb_column)
 	{
 		perror("Error\nMap must be a rectangle.");
+		free_tab(data->map_data.map);
 		exit(1);
 	}
 }
@@ -86,21 +89,22 @@ char	**read_map(char **av)
 	char	*map_line;
 	int		map_file;
 
-	map_file = open(av[1], O_RDONLY, 0777);
+	map_file = open(av[1], O_RDONLY);
 	if (map_file == -1)
-	{
-		perror("Error\nMap file unvalid.");
-		exit(1);
-	}
+		ft_error_3(0);
+	line = get_next_line(map_file);
+	if (line == NULL)
+		ft_error_3(1);
 	map_line = ft_strdup("");
 	while (1)
 	{
+		map_line = ft_strjoin_and_free(map_line, line);
+		free(line);
 		line = get_next_line(map_file);
 		if (!line)
 			break ;
-		map_line = ft_strjoin_and_free(map_line, line);
-		free(line);
 	}
+	free(line);
 	map = ft_split(map_line, '\n');
 	close(map_file);
 	free(map_line);

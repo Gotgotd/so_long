@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gautier <gautier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 09:42:20 by gdaignea          #+#    #+#             */
-/*   Updated: 2024/02/29 11:23:00 by gautier          ###   ########.fr       */
+/*   Updated: 2024/03/20 14:07:00 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int	count_words(char const *s, char c)
 	}
 	return (count_words);
 }
-static char **fill_tab(char const *s, char c, char **tab, int nb_words)
+
+static char	**fill_tab(char const *s, char c, char **tab, int nb_words)
 {
 	int	i;
 	int	j;

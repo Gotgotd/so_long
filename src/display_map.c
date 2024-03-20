@@ -6,12 +6,14 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:02:44 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 16:29:43 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:15:38 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+//convert the xpm file sent into a void* image that can be used by
+//the program
 void	*convert_img(t_data *data, char *path)
 {
 	void	*img;
@@ -21,6 +23,7 @@ void	*convert_img(t_data *data, char *path)
 	return (img);
 }
 
+//convert all the xpm files into void* images
 void	set_img(t_data *data)
 {
 	data->img.size = SIZE;
@@ -41,12 +44,15 @@ void	set_img(t_data *data)
 	data->img.win_img = convert_img(data, "./assets/img/win_img.xpm");
 }
 
+//Display one image on the screen
 void	display_img(t_data *data, void *img, int y, int x)
 {
 	mlx_put_image_to_window(data->mlx, data->mlx_win, img,
 		y * SIZE, x * SIZE);
 }
 
+//display all the images one by one and build the map
+//on the screen
 void	put_img_to_map(t_data *data)
 {
 	int	x;
@@ -74,6 +80,7 @@ void	put_img_to_map(t_data *data)
 	}
 }
 
+//Initialize the mlx and display the map on the screen
 void	display_map(t_data *data)
 {
 	data->map_data.heigth = data->map_data.nb_row * SIZE;

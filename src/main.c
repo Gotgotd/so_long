@@ -6,13 +6,15 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:31:09 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 15:02:02 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:10:47 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
+//check if the file extension is a .ber
+//otherwise : error message
 int	check_file_extension(char *av, t_data *data)
 {
 	int		i;

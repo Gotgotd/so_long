@@ -6,12 +6,13 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:15:44 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 16:28:30 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:20:27 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+//initialize all structure's datas
 void	init_map_data(t_data *data)
 {
 	data->map_data.c_collected = 0;

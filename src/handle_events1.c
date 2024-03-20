@@ -6,7 +6,7 @@
 /*   By: gdaignea <gdaignea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:16:24 by gautier           #+#    #+#             */
-/*   Updated: 2024/03/19 17:32:40 by gdaignea         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:19:02 by gdaignea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,12 @@ void	move_down(t_data *data)
 //(W, A, S, D and arrow keys, esc); 
 //Also check if all collectible have been collected and 
 //open the exit if so to finish the game
+//Also display a black rectangle to print the move counter on each
+//move
 int	handle_events(int keycode, t_data *data)
 {
 	if (keycode == 65307)
-	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		exit(0);
-	}
+		quit_game(data);
 	else if (keycode == 119 || keycode == 65362)
 		move_up(data);
 	else if (keycode == 115 || keycode == 65364)
